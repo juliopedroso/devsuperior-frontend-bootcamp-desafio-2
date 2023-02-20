@@ -1,0 +1,9 @@
+.main-nav{
+    min-height: 70px;
+    padding-left: 40px;
+
+}
+
+.navbar-brand, .navbar-brand:hover{
+    color:#FFF;
+}
