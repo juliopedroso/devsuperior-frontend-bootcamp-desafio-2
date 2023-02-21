@@ -3,17 +3,21 @@ import './styles.css';
 
 const Home = () => {
 
-    return (
-        <div className="home-container">
-            <h1>Desafio Github API</h1>
-            <h2>DevSuperior - Escola de programação</h2>
-            <div>
-            <Link to="/products">
-              <button className = "btn btn-primary" > Começar</button>
-            </Link>
-          </div>
+  return (
+    <div className="home-container">
+      <div className="home-content-container">
+        <div>
+          <h1>Desafio Github API</h1>
+          <p>DevSuperior - Escola de programação</p>
         </div>
-    );
+        <div>
+          <Link to="/">
+            <button className="btn btn-primary" > Começar</button>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 
 }
 
