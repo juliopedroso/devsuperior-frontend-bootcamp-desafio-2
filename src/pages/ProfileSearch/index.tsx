@@ -6,7 +6,7 @@ const Profile = () => {
             <div className="profile-content-container">
 
                 <h1>Encontre um perfil Github</h1>
-                <div className="container search-container">
+                <div className="search-container">
                     <form>
                         <div className="form-container">
                             <input
