@@ -6,16 +6,29 @@ type FormData = {
     gitUserName: string;
 }
 
+type GithubProfile = {
+
+    avatar_url: string,
+    url: string,
+    followers: number,
+    location: string,
+    name: string,
+
+}
+
 const Profile = () => {
 
     const [formData, setFormData] = useState<FormData>({
         gitUserName: ''
     })
 
+    const [githubProfile, setGithubProfile] = useState<GithubProfile>();
+
+
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const name = event.target.name;
         const value = event.target.value;
-        setFormData({...formData, [name]:value});
+        setFormData({ ...formData, [name]: value });
     }
 
 
@@ -49,6 +62,30 @@ const Profile = () => {
                         </div>
                     </form>
                 </div>
+            </div>
+            <div className="github-profile-container">
+                <img src='https://avatars.githubusercontent.com/u/13897257?v=4' alt='' />
+                <div className="profile-info-container">
+                    <h3 className='profile-info-container-title'>Informações</h3>
+                    <div className="profile-field">
+                        <h3 className="profile-field-title">Perfil:</h3>
+                        <a href="https://api.github.com/users/acenelio">https://api.github.com/users/acenelio</a>
+                    </div>
+                    <div className="profile-field">
+                        <h3 className="profile-field-title">Seguidores:</h3>
+                        <p className="profile-field-description">4379</p>
+                    </div>
+                    <div className="profile-field">
+                        <h3 className="profile-field-title">Localidade:</h3>
+                        <p className="profile-field-description">Uberlândia</p>
+                    </div>
+                    <div className="profile-field">
+                        <h3 className="profile-field-title">Nome:</h3>
+                        <p className="profile-field-description">Nelio Alves</p>
+                    </div>
+
+                </div>
+
             </div>
         </div>
     );
