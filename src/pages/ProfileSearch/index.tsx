@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 import './styles.css';
 
@@ -33,11 +34,19 @@ const Profile = () => {
 
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-
         event.preventDefault();
 
-        console.log(formData);
+        axios.get(`https://api.github.com/users/${formData.gitUserName}`)
+            .then((response) => {
+                setGithubProfile(response.data)
+                console.log(response.data)
+            })
+            .catch((error) => {
+                setGithubProfile(undefined)
+                console.log(error)
+            });
 
+        console.log(formData);
     }
 
     return (
@@ -63,30 +72,30 @@ const Profile = () => {
                     </form>
                 </div>
             </div>
-            <div className="github-profile-container">
-                <img src='https://avatars.githubusercontent.com/u/13897257?v=4' alt='' />
-                <div className="profile-info-container">
-                    <h3 className='profile-info-container-title'>Informações</h3>
-                    <div className="profile-field">
-                        <h3 className="profile-field-title">Perfil:</h3>
-                        <a href="https://api.github.com/users/acenelio">https://api.github.com/users/acenelio</a>
+            {githubProfile &&
+                <div className="github-profile-container">
+                    <img src={githubProfile.avatar_url} alt='' />
+                    <div className="profile-info-container">
+                        <h3 className='profile-info-container-title'>Informações</h3>
+                        <div className="profile-field">
+                            <h3 className="profile-field-title">Perfil:</h3>
+                            <a href={githubProfile.url}>{githubProfile.url}</a>
+                        </div>
+                        <div className="profile-field">
+                            <h3 className="profile-field-title">Seguidores:</h3>
+                            <p className="profile-field-description">{githubProfile.followers}</p>
+                        </div>
+                        <div className="profile-field">
+                            <h3 className="profile-field-title">Localidade:</h3>
+                            <p className="profile-field-description">{githubProfile.location}</p>
+                        </div>
+                        <div className="profile-field">
+                            <h3 className="profile-field-title">Nome:</h3>
+                            <p className="profile-field-description">{githubProfile.name}</p>
+                        </div>
                     </div>
-                    <div className="profile-field">
-                        <h3 className="profile-field-title">Seguidores:</h3>
-                        <p className="profile-field-description">4379</p>
-                    </div>
-                    <div className="profile-field">
-                        <h3 className="profile-field-title">Localidade:</h3>
-                        <p className="profile-field-description">Uberlândia</p>
-                    </div>
-                    <div className="profile-field">
-                        <h3 className="profile-field-title">Nome:</h3>
-                        <p className="profile-field-description">Nelio Alves</p>
-                    </div>
-
                 </div>
-
-            </div>
+            }
         </div>
     );
 }
